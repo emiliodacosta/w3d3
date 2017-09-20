@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+class CLI
+
+  def user_fun
+
+    puts "Enter your email"
+    email = gets.chomp
+    user = User.find_by(email: email)
+    puts "Would you like to visit a shortened url or create one?"
+    selection = gets.chomp
+
+    if selection.include?("create")
+      puts "Enter your long url"
+      long = gets.chomp
+      short = ShortenedUrl.shorten!(user, long)
+      puts "Short Url is #{short.short_url}"
+
+    elsif selection.include?("visit")
+      puts "Enter your short url"
+      short = gets.chomp
+      existing_short = ShortenedUrl.find_by(short_url: short)
+      raise 'no such url found!' if existing_short.nil?
+
+      Visit.record_visit!(user, existing_short)
+      Launchy.open(existing_short.long_url)
+    end
+  end
+
+end
+CLI.new.user_fun
