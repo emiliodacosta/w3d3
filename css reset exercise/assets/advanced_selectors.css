@@ -55,7 +55,6 @@ input[type="radio"]:checked {
   background-position: 30px 30px;
 }
 
-
 input:last-child {
     background: gold;
 }

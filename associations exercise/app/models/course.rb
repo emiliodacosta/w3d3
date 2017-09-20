@@ -8,7 +8,6 @@
 #  instructor_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#
 
 class Course < ApplicationRecord
   has_many :enrollments,
