@@ -19,7 +19,6 @@ class Tagtopic < ApplicationRecord
   source: :short_url
 
   def popular_links
-    
   end
 
 end
